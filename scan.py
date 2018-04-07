@@ -8,6 +8,7 @@ from socket import *
 c = bytes(123)
 screenLock = threading.Semaphore(value=1)
 
+
 def connScan(tgtHost, tgtPort):
     global c
     try:
@@ -25,7 +26,8 @@ def connScan(tgtHost, tgtPort):
     finally:
         screenLock.release()
         connSkt.close()
-        
+
+
 def portScan(tgtHost, tgtPorts):
     try:
         tgtIP = gethostbyname(tgtHost)
@@ -39,15 +41,17 @@ def portScan(tgtHost, tgtPorts):
         print('\n[+] Scan Results for: ' + tgtIP)
     setdefaulttimeout(1)
     for tgtPort in tgtPorts:
-        t  = threading.Thread(target = connScan, args = (tgtHost, int(tgtPort)))
+        t = threading.Thread(target=connScan, args=(tgtHost, int(tgtPort)))
         t.start()
         #print('Scanning port ' + tgtPort)
         #connScan(tgtHost, int(tgtPort))
+
 
 def main():
     tgtHost = sys.argv[1]
     tgtPorts = sys.argv[2].split(', ')
     portScan(tgtHost, tgtPorts)
+
 
 if __name__ == '__main__':
     main()
