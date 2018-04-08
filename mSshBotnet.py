@@ -13,7 +13,7 @@ def connect(user, host, password):
         return s
     except pxssh.ExceptionPxssh as e:
         print('pxssh failed on login.')
-    print(e)
+        print(e)
 
 
 def sendCommand(child, cmd):
