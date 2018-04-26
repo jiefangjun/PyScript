@@ -31,7 +31,7 @@ def botnetCommand(command):
     global botNet
     for client in botNet:
         output = client.send_command(command)
-        print('[*] Output form ' + client.host)
+        print('[*] Output form ' + client.host + ' ' + command)
         print('[+] ' + output +'\n')
 
 def addClient(host, user, password):
